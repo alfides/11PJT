@@ -111,7 +111,7 @@ public class ProductController {
 	}
 
 	
-	@RequestMapping(value="listProduct")
+	@RequestMapping("/listProduct")
 	public String listProduct(@ModelAttribute("search") Search search,
 							@RequestParam("menu") String menu, 
 							Model model) throws Exception {

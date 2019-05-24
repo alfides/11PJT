@@ -43,7 +43,9 @@
 
 	function fncGetList(currentPage) {
 		$('#currentPage').val(currentPage);
-		$('#menu').val();
+		$('#menu').val('${param.menu}');
+		alert($('#menu').val());
+		alert($('form').serialize());
 		//document.getElementById("currentPage").value = currentPage;
 		$('form').attr('method', 'POST').attr('action', '/product/listProduct').submit();
 		
@@ -53,7 +55,7 @@
 	$(function(){
 		var menu=$('#menu').val();
 		
-		$('td.ct_btn01:contains("검색")').on('click', function(){
+		$('button.btn.btn-default').on('click', function(){
 			fncGetList(1);
 		});
 		
@@ -197,8 +199,9 @@
 			</div>
 			
 			<div class="col-md-6 text-right">
-				<form class="form-inline" name="detailForm" enctype="multipart/form-data">
-				<input type="hidden" id="menu" name="menu" value="${ param.menu }">
+				<form class="form-inline" name="detailForm">
+				<input type="hidden" id="menu" name="menu"/>
+				<input type="hidden" id="currentPage" name="currentPage" value=""/>
 				
 					<div class="form-group">
 						<select class="form-control" name="searchCondition">
@@ -216,12 +219,11 @@
 					
 					<button type="button" class="btn btn-default">검색</button>
 				
-					<input type="hidden" id="currentPage" name="currentPage" value=""/>
-				
 				</form>
 			</div> 
 			
 		</div>
+	
 		
 		<table class="table table-hover table-striped">
 		
@@ -287,8 +289,10 @@
 		
 		</table>
 	
+	</div>
+		
 			<jsp:include page="../common/pageNavigator_new.jsp"/>
 			
-	</body>
+</body>
 	
 </html>
