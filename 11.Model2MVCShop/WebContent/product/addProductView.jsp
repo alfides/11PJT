@@ -34,7 +34,11 @@
 		
 		$(function(){
 			$("#datepicker").datepicker({
-				dateFormat: "yy-mm-dd"
+				dateFormat: "yy-mm-dd",
+				minDate: '-100y',
+				yearRange: 'c-100:c+10',
+				changeMonth: true,
+				changeYear: true
 			});
 		});
 		

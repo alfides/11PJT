@@ -44,8 +44,6 @@
 	function fncGetList(currentPage) {
 		$('#currentPage').val(currentPage);
 		$('#menu').val('${param.menu}');
-		alert($('#menu').val());
-		alert($('form').serialize());
 		//document.getElementById("currentPage").value = currentPage;
 		$('form').attr('method', 'POST').attr('action', '/product/listProduct').submit();
 		
@@ -167,7 +165,6 @@
 		});
 		
 		$('#delivery').on('click', function(){
-			alert($(this).parent().children('td:first').text().trim());
 			self.location="/purchase/updateTranCode1?prodNo="+$(this).parent().children('td:first').text().trim()+"&tranCode=002"
 		});
 	});

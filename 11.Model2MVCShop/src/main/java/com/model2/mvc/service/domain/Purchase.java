@@ -36,7 +36,7 @@ public class Purchase {
 		this.divyAddr = divyAddr;
 	}
 	public String getDivyDate() {
-		return divyDate;
+		return divyDate.substring(0, 10);
 	}
 	public void setDivyDate(String divyDate) {
 		this.divyDate = divyDate;
