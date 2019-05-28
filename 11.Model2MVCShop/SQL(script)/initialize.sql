@@ -2,13 +2,16 @@
 DROP TABLE transaction;
 DROP TABLE product;
 DROP TABLE users;
+DROP TABLE bbsEval;
 
 DROP SEQUENCE seq_product_prod_no;
 DROP SEQUENCE seq_transaction_tran_no;
+DROP SEQUENCE seq_bbsEval_content_no;
 
 
 CREATE SEQUENCE seq_product_prod_no		 	INCREMENT BY 1 START WITH 10000;
 CREATE SEQUENCE seq_transaction_tran_no	INCREMENT BY 1 START WITH 10000;
+CREATE SEQUENCE seq_bbsEval_content_no INCREMENT BY 1 START WITH 10000;
 
 
 CREATE TABLE users ( 
@@ -51,6 +54,18 @@ CREATE TABLE transaction (
 	PRIMARY KEY(tran_no)
 );
 
+CREATE TABLE bbsEval(
+
+	content_no	NUMBER		NOT NULL,
+	bbsuser_id	VARCHAR(20)	NOT NULL REFERENCES users(user_id),
+	bbsprod_no	NUMBER(16)	NOT NULL REFERENCES product(prod_no),
+	content_name	VARCHAR(100)	NOT NULL,
+	reg_date		DATE,
+	eval_point	NUMBER(1)	NOT NULL,
+	content		VARCHAR(2000)	NOT NULL,
+	PRIMARY KEY(content_no)
+ 
+);
 
 INSERT 
 INTO users ( user_id, user_name, password, role, ssn, cell_phone, addr, email, reg_date ) 
