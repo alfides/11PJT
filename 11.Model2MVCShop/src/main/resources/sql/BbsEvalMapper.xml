@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="BbsEvalMapper">
+ 	
+	<resultMap id="bbsEvalSelectMap" type="bbsEval">
+		<result property="contentNo"		column="content_no"		jdbcType="NUMERIC"/>
+		<result property="bbsUser.userId"	column="bbsuser_id"		jdbcType="VARCHAR"/>
+		<result property="bbsProd.prodNo"	column="bbsprod_no"		jdbcType="NUMERIC"/>
+		<result property="bbsProd.prodName"	column="bbsprodname"	jdbcType="VARCHAR"/>
+		<result property="contentName"		column="content_name"	jdbcType="VARCHAR"/>
+		<result property="regDate"			column="reg_date"		jdbcType="DATE"/>
+		<result property="evalPoint"		column="eval_point"		jdbcType="NUMERIC"/>
+		<result property="content"			column="content"		jdbcType="VARCHAR"/>
+	</resultMap>
+	
+
+	<insert id="addBbsEval" parameterType="bbsEval">
+		INSERT
+		INTO bbsEval( content_no, bbsuser_id, bbsprod_no, bbsprodname, content_name, reg_date, eval_point, content )
+		VALUES( seq_bbsEval_content_no.NEXTVAL,
+				#{bbsUser.userId},
+				#{bbsProd.prodNo},
+				#{bbsProd.prodName},
+				#{contentName},
+				SYSDATE,
+				#{eval_point},
+				#{content} )	
+	</insert>
+
+	
+	<select id="getbbsEval" parameterType="int" resultMap="bbsEvalSelectMap">
+		SELECT
+		content_no, bbsuser_id, bbsprodname, content_name, reg_date, eval_point, content
+		FROM bbsEval
+		WHERE content_no=#{value}
+	</select>
+
+	<update id="updateBbsEval" parameterType="bbsEval">
+		UPDATE bbsEval
+		<set>
+			<if test="content_name!=null"> 	content_name=#{contentName},</if>
+											content		=#{content}
+		</set>
+		WHERE content_no=#{contentNo}
+	</update>
+		 
+	<select id="getBbsEvalList" parameterType="search" resultMap="bbsEvalSelectMap">
+	  	SELECT *
+	  	FROM (	SELECT inner_table.* , ROWNUM AS row_seq
+	  					FROM		(	SELECT content_no, bbsuser_id, bbsprodname, content_name, reg_date, eval_point, content
+											FROM bbsEval
+											<if test="searchCondition != null">
+													WHERE
+													<if test="searchCondition == 0 and searchKeyword !='' ">
+										 				bbsuser_id LIKE '%${searchKeyword}%'
+													</if>
+													<if test="searchCondition == 1 and searchKeyword !='' ">
+										 				bbsprodname LIKE '%${searchKeyword}%'
+													</if>
+													<if test="searchCondition == 2 and searchKeyword !='' ">
+										 				content LIKE '${searchKeyword}%'
+													</if>
+											</if>
+											ORDER BY content_no ) inner_table
+						WHERE ROWNUM &lt;= #{endRowNum} )
+		WHERE row_seq BETWEEN #{startRowNum} AND #{endRowNum} 
+	 </select>
+ 
+	 <select id="getTotalCount" parameterType="search" resultType="int">
+		SELECT COUNT(*)
+	  	FROM (	SELECT content_no, bbsuser_id, content_name, reg_date, eval_point, content
+											FROM bbsEval
+											<if test="searchCondition != null">
+													WHERE
+													<if test="searchCondition == 0 and searchKeyword !='' ">
+										 				bbsuser_id LIKE '%${searchKeyword}%'
+													</if>
+													<if test="searchCondition == 1 and searchKeyword !='' ">
+										 				bbsprod_prodName LIKE '%${searchKeyword}%'
+													</if>
+													<if test="searchCondition == 2 and searchKeyword !='' ">
+										 				content LIKE '${searchKeyword}%'
+													</if>
+											</if> ) countTable					
+	 </select>
+	 
+	 <delete id="removeBbsEval" parameterType="bbsEval">
+	 	DELETE FROM bbsEval WHERE content_no=#{value}
+	 </delete>
+	 
+</mapper>
