@@ -49,6 +49,13 @@
 	 	//document.detailForm.submit();
 	}
 	
+	$(function(){
+		$('td:nth-child(4)').on('click', function(){
+			var contentNo=$(this).parent().children("td:first").text().trim();
+			self.location="/bbsEval/getBbsEval?contentNo="+contentNo+"&menu=search";
+		});
+	})
+	
 </script>
 
 </head>
@@ -112,7 +119,7 @@
 			<tbody>
 			
 				<c:set var="i" value="0"/>
-				<c:forEach var="bbsEval" items="${ list }"></c:forEach>
+				<c:forEach var="bbsEval" items="${ list }">
 					<tr>
 						<td align="center">${ bbsEval.contentNo }</td>
 						<td align="left">${ bbsEval.bbsUser.userId }</td>
@@ -120,6 +127,8 @@
 						<td align="left">${ bbsEval.contentName }</td>
 						<td align="left">${ bbsEval.regDate }</td>
 						<td align="left">${ bbsEval.evalPoint }</td>
+					</tr>
+				</c:forEach>
 			</tbody>
 			
 		</table>

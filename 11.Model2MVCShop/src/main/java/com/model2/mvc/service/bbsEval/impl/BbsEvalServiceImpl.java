@@ -14,12 +14,12 @@ import com.model2.mvc.service.bbsEval.BbsEvalService;
 import com.model2.mvc.service.domain.BbsEval;
 import com.model2.mvc.service.domain.Product;
 
-@Service("BbsEvalServiceImpl")
+@Service("bbsEvalServiceImpl")
 public class BbsEvalServiceImpl implements BbsEvalService {
 
 	///Field
 	@Autowired
-	@Qualifier("BbsEvalDaoImpl")
+	@Qualifier("bbsEvalDaoImpl")
 	private BbsEvalDao bbsEvalDao;
 	public void setBbsEvalDao(BbsEvalDao bbsEvalDao) {
 		this.bbsEvalDao=bbsEvalDao;
@@ -49,6 +49,8 @@ public class BbsEvalServiceImpl implements BbsEvalService {
 		// TODO Auto-generated method stub
 		List<BbsEval> list=bbsEvalDao.getBbsEvalList(search);
 		int totalCount=bbsEvalDao.getTotalCount(search);
+		
+		System.out.println("DEF : "+list);
 		
 		Map<String, Object> map=new HashMap<String, Object>();
 		map.put("list", list);

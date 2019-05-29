@@ -12,6 +12,7 @@ public class BbsEval {
 	private Date regDate;
 	private int evalPoint;
 	private String content;
+	private String filename;
 	
 	//Constructor
 	public BbsEval() {
@@ -61,6 +62,21 @@ public class BbsEval {
 	}
 	public final void setContent(String content) {
 		this.content = content;
+	}
+
+	public final String getFilename() {
+		return filename;
+	}
+
+	public final void setFilename(String filename) {
+		this.filename = filename;
+	}
+
+	@Override
+	public String toString() {
+		return "BbsEval [contentNo=" + contentNo + ", bbsUser=" + bbsUser + ", bbsProd=" + bbsProd + ", contentName="
+				+ contentName + ", regDate=" + regDate + ", evalPoint=" + evalPoint + ", content=" + content
+				+ ", filename=" + filename + "]";
 	}	
 
 }

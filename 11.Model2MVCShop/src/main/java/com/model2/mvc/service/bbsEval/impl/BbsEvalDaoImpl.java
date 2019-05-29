@@ -46,6 +46,7 @@ public class BbsEvalDaoImpl implements BbsEvalDao {
 	@Override
 	public List<BbsEval> getBbsEvalList(Search search) throws Exception {
 		// TODO Auto-generated method stub
+		System.out.println("ABC : "+search);
 		return sqlSession.selectList("BbsEvalMapper.getBbsEvalList", search);
 	}
 

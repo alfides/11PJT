@@ -32,11 +32,11 @@
 	</insert>
 
 	
-	<select id="getbbsEval" parameterType="int" resultMap="bbsEvalSelectMap">
+	<select id="getbbsEval" parameterType="string" resultMap="bbsEvalSelectMap">
 		SELECT
 		content_no, bbsuser_id, bbsprodname, content_name, reg_date, eval_point, content
 		FROM bbsEval
-		WHERE content_no=#{value}
+		WHERE content_no=#{contentNo}
 	</select>
 
 	<update id="updateBbsEval" parameterType="bbsEval">
@@ -54,7 +54,7 @@
 	  					FROM		(	SELECT content_no, bbsuser_id, bbsprodname, content_name, reg_date, eval_point, content
 											FROM bbsEval
 											<if test="searchCondition != null">
-													WHERE
+												<where>
 													<if test="searchCondition == 0 and searchKeyword !='' ">
 										 				bbsuser_id LIKE '%${searchKeyword}%'
 													</if>
@@ -64,6 +64,7 @@
 													<if test="searchCondition == 2 and searchKeyword !='' ">
 										 				content LIKE '${searchKeyword}%'
 													</if>
+												</where>
 											</if>
 											ORDER BY content_no ) inner_table
 						WHERE ROWNUM &lt;= #{endRowNum} )
@@ -75,7 +76,7 @@
 	  	FROM (	SELECT content_no, bbsuser_id, content_name, reg_date, eval_point, content
 											FROM bbsEval
 											<if test="searchCondition != null">
-													WHERE
+												<where>
 													<if test="searchCondition == 0 and searchKeyword !='' ">
 										 				bbsuser_id LIKE '%${searchKeyword}%'
 													</if>
@@ -85,6 +86,7 @@
 													<if test="searchCondition == 2 and searchKeyword !='' ">
 										 				content LIKE '${searchKeyword}%'
 													</if>
+												</where>
 											</if> ) countTable					
 	 </select>
 	 
