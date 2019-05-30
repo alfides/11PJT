@@ -18,7 +18,7 @@
 		<result property="divyRequest"			column="dlvy_request"		jdbcType="VARCHAR"/>
 		<result property="tranCode"				column="tran_status_code"	jdbcType="VARCHAR"/>
 		<result property="orderDate"			column="order_data"			jdbcType="DATE"/>
-		<result property="divyDate" 			column="dlvy_date"			jdbcType="DATE"/>
+		<result property="divyDate" 			column="dlvy_date"			jdbcType="VARCHAR"/>
 	</resultMap>
 	
 	<insert id="addPurchase" parameterType="purchase">
@@ -35,7 +35,7 @@
 			#{divyRequest:VARCHAR}, 
 			#{tranCode:VARCHAR}, 
 			SYSDATE,  
-			#{divyDate:DATE}		
+			#{divyDate:VARCHAR}		
 		)
 	</insert>
 	
@@ -79,7 +79,7 @@
 	 			receiver_phone=#{receiverPhone:VARCHAR},
 	 			demailaddr=#{divyAddr:VARCHAR},
 	 			dlvy_request=#{divyRequest:VARCHAR},
-	 			dlvy_date=#{divyDate:DATE}
+	 			dlvy_date=#{divyDate:VARCHAR}
 	 		</set>
 	 	WHERE tran_no=#{tranNo}
 	 </update>

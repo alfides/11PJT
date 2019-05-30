@@ -41,6 +41,12 @@
 			});
 			
 			$(function(){
+				$('button.btn.btn-primary:contains("상품평")').on('click', function(){
+					self.location="/bbsEval/writeBbsEvalView.jsp?prodNo="+$('#prodNo').val();
+				});
+			});
+			
+			$(function(){
 				$('a[href="#"]').on('click', function(){
 					history.go(-1);
 				});
@@ -63,6 +69,7 @@
 				</div>
 				
 				<input type="hidden" id="tranNo" name="tranNo" value="${ purchase.tranNo }"/>
+				<input type="hidden" id="prodNo" name="prodNo" value="${ purchase.purchaseProd.prodNo }"/>
 				<input type="hidden" id="buyerId" name="buyerId" value="${ purchase.buyer.userId }"/>
 				
 				<div class="row">
@@ -130,6 +137,9 @@
 					<div class="col-md-12 text-center">
 						<c:if test="${ purchase.tranCode==001 }">
 							<button type="button" class="btn btn-primary">수정</button>
+						</c:if>
+						<c:if test="${ purchase.tranCode==003 }">
+							<button type="button" class="btn btn-primary">상품평작성</button>
 						</c:if>
 						<a class="btn btn-primary btn" href="#" role="button">이전</a>
 					</div>

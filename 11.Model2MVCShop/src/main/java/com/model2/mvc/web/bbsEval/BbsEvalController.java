@@ -27,6 +27,7 @@ import com.model2.mvc.service.domain.BbsEval;
 import com.model2.mvc.service.domain.Product;
 import com.model2.mvc.service.domain.Purchase;
 import com.model2.mvc.service.product.ProductService;
+import com.model2.mvc.service.product.impl.ProductServiceImpl;
 
 
 //==> ªÛ«∞∆Ú Controller
@@ -92,28 +93,31 @@ public class BbsEvalController {
 	
 	@RequestMapping("/getBbsEval")
 	public String getBbsEval(@ModelAttribute("bbsEval") BbsEval bbsEval,
+							@ModelAttribute("product") Product product,
 							@RequestParam("contentNo") int contentNo,
+							@RequestParam("prodNo") int prodNo,
 							@RequestParam("menu") String menu, 
 							Map<String, Object> map) throws Exception {
 
 		System.out.println("/getBbsEval");
 		
 		bbsEval=bbsEvalService.getBbsEval(contentNo);
+		ProductService productService=new ProductServiceImpl();
+		productService.getProduct(prodNo);
 		
 		map.put("bbsEval", bbsEval);
+		map.put("product", product);
 		
-		return "forward:/bbsEval/readBbsEval.jsp?contentNo="+contentNo+"&menu="+menu;
+		return "forward:/bbsEval/readBbsEval.jsp?contentNo="+contentNo+"&prodNo"+prodNo+"&menu="+menu;
 		
 	}
 
 	
 	@RequestMapping("/listBbsEval")
-	public String listBbsEval(@ModelAttribute("search") Search search,
-							@RequestParam("menu") String menu, 
+	public String listBbsEval(@ModelAttribute("search") Search search, 
 							Model model) throws Exception {
 		
 		System.out.println("/listBbsEval");
-		System.out.println(menu);
 		
 		if(search.getCurrentPage() ==0 ){
 			search.setCurrentPage(1);

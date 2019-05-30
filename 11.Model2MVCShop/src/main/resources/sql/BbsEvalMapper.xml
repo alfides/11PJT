@@ -15,6 +15,7 @@
 		<result property="regDate"			column="reg_date"		jdbcType="DATE"/>
 		<result property="evalPoint"		column="eval_point"		jdbcType="NUMERIC"/>
 		<result property="content"			column="content"		jdbcType="VARCHAR"/>
+		<result property="fileName"			column="img_file"		jdbcType="VARCHAR"/>
 	</resultMap>
 	
 
@@ -24,15 +25,15 @@
 		VALUES( seq_bbsEval_content_no.NEXTVAL,
 				#{bbsUser.userId},
 				#{bbsProd.prodNo},
-				#{bbsProd.prodName},
+				#{bbsProd.prodName:VARCHAR},
 				#{contentName},
 				SYSDATE,
-				#{eval_point},
+				#{evalPoint},
 				#{content} )	
 	</insert>
 
 	
-	<select id="getbbsEval" parameterType="string" resultMap="bbsEvalSelectMap">
+	<select id="getBbsEval" parameterType="string" resultMap="bbsEvalSelectMap">
 		SELECT
 		content_no, bbsuser_id, bbsprodname, content_name, reg_date, eval_point, content
 		FROM bbsEval
@@ -51,18 +52,20 @@
 	<select id="getBbsEvalList" parameterType="search" resultMap="bbsEvalSelectMap">
 	  	SELECT *
 	  	FROM (	SELECT inner_table.* , ROWNUM AS row_seq
-	  					FROM		(	SELECT content_no, bbsuser_id, bbsprodname, content_name, reg_date, eval_point, content
-											FROM bbsEval
+	  					FROM		(	SELECT b.content_no, b.bbsuser_id, b.bbsprodname, b.content_name, b.reg_date, 
+	  										b.eval_point, b.content, p.prod_no, p.prod_name
+											FROM bbsEval b, product p
 											<if test="searchCondition != null">
 												<where>
+													b.bbsprod_no=p.prod_no(+)
 													<if test="searchCondition == 0 and searchKeyword !='' ">
-										 				bbsuser_id LIKE '%${searchKeyword}%'
+										 				AND b.bbsuser_id LIKE '%${searchKeyword}%'
 													</if>
 													<if test="searchCondition == 1 and searchKeyword !='' ">
-										 				bbsprodname LIKE '%${searchKeyword}%'
+										 				AND p.prod_name LIKE '%${searchKeyword}%'
 													</if>
 													<if test="searchCondition == 2 and searchKeyword !='' ">
-										 				content LIKE '${searchKeyword}%'
+										 				AND b.content LIKE '${searchKeyword}%'
 													</if>
 												</where>
 											</if>

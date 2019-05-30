@@ -38,23 +38,23 @@
 		// 	var detail = document.detailForm.prodDetail.value;
 		// 	var manuDate = document.detailForm.manuDate.value;
 		// 	var price = document.detailForm.price.value;
-			var name = $("input[name='contentName']").val();
-			var content = $("input[name='content']").val();
+// 			var name = $("input[name='contentName']").val();
+// 			var content = $("input[name='content']").val();
 		
-			if(name == null || name.length<1){
-				alert("제목을 입력해 주세요.");
-				return;
-			}
+// 			if(name == null || name.length<1){
+// 				alert("제목을 입력해 주세요.");
+// 				return;
+// 			}
 			
-			if(content == null || content.length<1){
-				alert("내용을 입력해 주세요.");
-				return;
-			}
+// 			if(content == null || content.length<1){
+// 				alert("내용을 입력해 주세요.");
+// 				return;
+// 			}
 			
-			if(content.length>1000){
-				alert("내용은 1천자 미만으로 작성해 주세요.")
-				return;
-			}
+// 			if(content.length>1000){
+// 				alert("내용은 1천자 미만으로 작성해 주세요.")
+// 				return;
+// 			}
 			
 		// 	document.detailForm.action='/product/addProduct';
 		// 	document.detailForm.submit();
@@ -90,16 +90,34 @@
 		
 			<h1 class="bg-primary text-center">상 품 평 등 록</h1>
 			
-			<form class="text-center p-5" method="post">
+			<form class="text-center p-5" method="post" enctype="multipart/form-data">
+			<input type="hidden" id="bbsUser.userId" name="bbsUser.userId" value="${ sessionScope.user.userId }"/>
+			<input type="hidden" id="bbsProd.prodNo" name="bbsProd.prodNo" value="${ param.prodNo }"/>
 			
+ 			
 				<input type="text" class="form-control" placeholder="제목" 
 				id="contentName" name="contentName" value="" required>
+						
+				<hr/>
+								
+				<div class="col-sm-4" align="left">
+					<select name="evalPoint" class="form-control" 
+						style="width: 120px; height: 35px" maxLength="20">
+						<option value="5">대만족</option>
+						<option value="4">만족</option>
+						<option value="3">보통</option>
+						<option value="2">실망</option>
+						<option value="1">대실망</option>
+					</select>
+					<hr/>
+					<hr/>
+				</div>
 				
-				<input type="text" class="form-control" placeholder="평점" 
-				id="evalPoint" name="evalPoint" value="" required>
 				
 				<textarea class="form-control" rows="20" placeholder="내용" 
 				id="content" name="content" value="" required></textarea>
+				
+				<hr/>
 				
 				<div class="form-group">
 					<label for="file" class="col-sm-1 control-label">파일1</label>
@@ -108,12 +126,20 @@
 					</div>		
 				</div>
 				
+				<hr/>
+				
 				<div class="form-group">
 					<div class="col-sm-offset-4 col-sm-4 text-center">
 						<button type="button" class="btn btn-primary">등록</button>
 						<a class="btn btn-primary btn" href="#" role="button">취소</a>
 					</div>
 				</div>
+				
+				<hr/>
+				<hr/>
+				<hr/>
+				<hr/>
+				
 				
 			</form>
 	

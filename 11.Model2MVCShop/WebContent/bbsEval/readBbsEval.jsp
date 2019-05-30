@@ -18,12 +18,11 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
 
 		<!--  ///////////////////////// CSS ////////////////////////// -->
-			<style>
-		       body > div.container{
-		        	border: 3px solid #D6CDB7;
-		            margin-top: 10px;
-		        }
-		    </style>
+		<style>
+	 		body {
+	            padding-top : 50px;
+	        }
+	     </style>
 
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   		<link rel="stylesheet" href="/resources/demos/style.css">
@@ -80,67 +79,69 @@
 	
 	<body>
 	
-		<jsp:include page="/layout/toolbar.jsp"></jsp:include>
+		<jsp:include page="/layout/toolbar.jsp"/>
 			
-		<div class="container">
-		
-			<h1 class="bg-primary text-center">상 품 평</h1>
+
+			<form class="form-inline" name="detailForm" enctype="multipart/form-data">
+
+				<div class="container">
 			
-			<form class="text-center p-5" method="post">
-			
-				<div class="row">
-					<div class="col-xs-4 col-md-2"><strong>제 목</strong></div>
-					<div class="col-xs-8 col-md-4">${ bbsEval.contentName }</div>
-				</div>
+					<div class="page-header">
+						<h3 class="text-info">상 품 평</h3>
+					</div>
 				
-				<hr/>
-				
-				<div class="row">
-					<div class="col-xs-4 col-md-2"><strong>작성자ID</strong></div>
-					<div class="col-xs-8 col-md-4">${ bbsEval.bbsUser.userId }</div>
-				</div>
-				
-				<hr/>
-				
-				<div class="row">
-					<div class="col-xs-4 col-md-2"><strong>평점</strong></div>
-					<div class="col-xs-8 col-md-4">${ bbsEval.evalPoint }</div>
-				</div>
-				
-				<hr/>
-				
-				<div class="row">
-					<div class="col-xs-4 col-md-2"><strong>내 용</strong></div>
-					<div class="col-xs-8 col-md-4">${ bbsEval.content }</div>
-				</div>
-				
-				<hr/>
-				
-				<div class="row">
-					<div class="col-xs-4 col-md-2"><strong>구 매 상 품</strong></div>
-					<div class="col-xs-8 col-md-4">${ bbsEval.bbsProd.prodName }</div>
-				</div>
-				
-				<hr/>
-				
-				<div class="row">
-					<div class="col-xs-4 col-md-2"><strong>작 성 일</strong></div>
-					<div class="col-xs-8 col-md-4">${ bbsEval.regDate }</div>
-				</div>
-				
-				<hr/>
-				
-				<div class="form-group">
-					<div class="col-sm-offset-4 col-sm-4 text-center">
-						<button type="button" class="btn btn-primary">수정</button>
-						<a class="btn btn-primary btn" href="#" role="button">취소</a>
-						<a class="btn btn-primary btn" href="##" role="button">삭제</a>
+					<div class="row">
+						<div class="col-xs-4 col-md-2"><strong>제 목</strong></div>
+						<div class="col-xs-8 col-md-4">${ bbsEval.contentName }</div>
+					</div>
+					
+					<hr/>
+					
+					<div class="row">
+						<div class="col-xs-4 col-md-2"><strong>작성자ID</strong></div>
+						<div class="col-xs-8 col-md-4">${ bbsEval.bbsUser.userId }</div>
+					</div>
+					
+					<hr/>
+					
+					<div class="row">
+						<div class="col-xs-4 col-md-2"><strong>평점</strong></div>
+						<div class="col-xs-8 col-md-4">${ bbsEval.evalPoint }</div>
+					</div>
+					
+					<hr/>
+					
+					<div class="row">
+						<div class="col-xs-4 col-md-2"><strong>내 용</strong></div>
+						<div class="col-xs-8 col-md-4">${ bbsEval.content }</div>
+					</div>
+					
+					<hr/>
+					
+					<div class="row">
+						<div class="col-xs-4 col-md-2"><strong>구 매 상 품</strong></div>
+						<div class="col-xs-8 col-md-4">${ bbsEval.bbsProd.prodName }</div>
+					</div>
+					
+					<hr/>
+					
+					<div class="row">
+						<div class="col-xs-4 col-md-2"><strong>작 성 일</strong></div>
+						<div class="col-xs-8 col-md-4">${ bbsEval.regDate }</div>
+					</div>
+					
+					<hr/>
+					
+					<div class="row">
+						<div class="col-md-12 text-center">
+							<button type="button" class="btn btn-primary">수정</button>
+							<a class="btn btn-primary btn" href="#" role="button">취소</a>
+							<a class="btn btn-primary btn" href="##" role="button">삭제</a>
+						</div>
 					</div>
 				</div>
-				
 			</form>
 	
-		</div>
 	
 	</body>
 
