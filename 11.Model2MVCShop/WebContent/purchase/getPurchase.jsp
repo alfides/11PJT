@@ -70,11 +70,19 @@
 				
 				<input type="hidden" id="tranNo" name="tranNo" value="${ purchase.tranNo }"/>
 				<input type="hidden" id="prodNo" name="prodNo" value="${ purchase.purchaseProd.prodNo }"/>
+				<input type="hidden" id="prodName" name="prodName" value="${ purchase.purchaseProd.prodName }"/>
 				<input type="hidden" id="buyerId" name="buyerId" value="${ purchase.buyer.userId }"/>
 				
 				<div class="row">
 					<div class="col-xs-4 col-md-2"><strong>상 품 번 호</strong></div>
 					<div class="col-xs-8 col-md-4">${ purchase.purchaseProd.prodNo }</div>
+				</div>
+				
+				<hr/>
+				
+				<div class="row">
+					<div class="col-xs-4 col-md-2"><strong>상 품 명</strong></div>
+					<div class="col-xs-8 col-md-4">${ purchase.purchaseProd.prodName }</div>
 				</div>
 				
 				<hr/>

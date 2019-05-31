@@ -65,6 +65,13 @@
 				</div>
 				
 				<div class="form-group">
+					<label for="prodName" class="col-sm-offset-1 col-sm-3 control-label">상 품 명</label>
+					<div class="col-sm-4">
+						${ purchase.purchaseProd.prodName }
+					</div>				
+				</div>
+				
+				<div class="form-group">
 					<label for="userId" class="col-sm-offset-1 col-sm-3 control-label">구매자ID</label>
 					<div class="col-sm-4">
 						${ purchase.buyer.userId }

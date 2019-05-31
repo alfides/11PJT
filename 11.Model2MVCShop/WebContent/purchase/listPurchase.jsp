@@ -101,6 +101,8 @@
 					<tr>
 						<th align="center">No</th>
 						<th><input type="hidden"></th>
+						<th align="left">상품명</th>
+						<th><input type="hidden"></th>
 						<th align="left">회원ID</th>
 						<th><input type="hidden"></th>
 						<th align="left">회원명</th>
@@ -118,6 +120,8 @@
 								<tr>
 									<td align="center">${ i }</td>
 									<td><input type="hidden" id="tranNo" name="tranNo" value="${purchase.tranNo}"></td>
+									<td align="left">${ purchase.purchaseProd.prodName }</td>
+									<td><input type="hidden" id="prodName" name="prodName" value="${purchase.purchaseProd.prodName}"></td>
 									<td align="left">${ purchase.buyer.userId }</td>
 									<td><input type="hidden" id="buyerId" name="buyerId" value="${purchase.buyer.userId}"></td>
 									<td align="left">${purchase.receiverName}</td>

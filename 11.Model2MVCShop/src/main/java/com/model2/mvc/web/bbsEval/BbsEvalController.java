@@ -95,7 +95,6 @@ public class BbsEvalController {
 	public String getBbsEval(@ModelAttribute("bbsEval") BbsEval bbsEval,
 							@ModelAttribute("product") Product product,
 							@RequestParam("contentNo") int contentNo,
-							@RequestParam("prodNo") int prodNo,
 							@RequestParam("menu") String menu, 
 							Map<String, Object> map) throws Exception {
 
@@ -103,12 +102,11 @@ public class BbsEvalController {
 		
 		bbsEval=bbsEvalService.getBbsEval(contentNo);
 		ProductService productService=new ProductServiceImpl();
-		productService.getProduct(prodNo);
 		
 		map.put("bbsEval", bbsEval);
 		map.put("product", product);
 		
-		return "forward:/bbsEval/readBbsEval.jsp?contentNo="+contentNo+"&prodNo"+prodNo+"&menu="+menu;
+		return "forward:/bbsEval/readBbsEval.jsp?contentNo="+contentNo+"&menu="+menu;
 		
 	}
 

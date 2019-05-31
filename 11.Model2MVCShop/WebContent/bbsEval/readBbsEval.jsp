@@ -31,34 +31,8 @@
 
 		<script type="text/javascript">
 		
-		function fncWriteBbsEval(){
-			//Form 유효성 검증
-		//  var name = document.detailForm.prodName.value;
-		// 	var detail = document.detailForm.prodDetail.value;
-		// 	var manuDate = document.detailForm.manuDate.value;
-		// 	var price = document.detailForm.price.value;
-			var name = $("input[name='contentName']").val();
-			var content = $("input[name='content']").val();
 		
-			if(name == null || name.length<1){
-				alert("제목을 입력해 주세요.");
-				return;
-			}
 			
-			if(content == null || content.length<1){
-				alert("내용을 입력해 주세요.");
-				return;
-			}
-			
-			if(content.length>1000){
-				alert("내용은 1천자 미만으로 작성해 주세요.")
-				return;
-			}
-			
-		// 	document.detailForm.action='/product/addProduct';
-		// 	document.detailForm.submit();
-			$("form").attr("method", "POST").attr("action", "/bbsEval/addBbsEval").submit();
-		}
 			$(function(){
 				$('button.btn.btn-primary').on('click',function(){
 					fncWriteBbsEval();
