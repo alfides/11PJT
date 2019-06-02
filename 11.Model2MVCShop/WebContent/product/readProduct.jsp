@@ -111,7 +111,14 @@
 				
 				<hr/>
 				
-				
+				<div class="row">
+					<div class="col-md-12 text-center">
+						<c:if test="${ purchase.tranCode eq null }">
+							<button type="button" class="btn btn-primary">구매</button>
+						</c:if>
+						<a class="btn btn-primary btn" href="#" role="button">이전</a>
+					</div>
+				</div>
 				
 				<br/>
 				

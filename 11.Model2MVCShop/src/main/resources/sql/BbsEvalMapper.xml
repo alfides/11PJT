@@ -10,7 +10,6 @@
 		<result property="contentNo"		column="content_no"		jdbcType="NUMERIC"/>
 		<result property="bbsUser.userId"	column="bbsuser_id"		jdbcType="VARCHAR"/>
 		<result property="bbsProd.prodNo"	column="bbsprod_no"		jdbcType="NUMERIC"/>
-		<result property="bbsProd.prodName"	column="bbsprodname"	jdbcType="VARCHAR"/>
 		<result property="contentName"		column="content_name"	jdbcType="VARCHAR"/>
 		<result property="regDate"			column="reg_date"		jdbcType="DATE"/>
 		<result property="evalPoint"		column="eval_point"		jdbcType="NUMERIC"/>
@@ -21,11 +20,10 @@
 
 	<insert id="addBbsEval" parameterType="bbsEval">
 		INSERT
-		INTO bbsEval( content_no, bbsuser_id, bbsprod_no, bbsprodname, content_name, reg_date, eval_point, content )
+		INTO bbsEval( content_no, bbsuser_id, bbsprod_no, content_name, reg_date, eval_point, content )
 		VALUES( seq_bbsEval_content_no.NEXTVAL,
 				#{bbsUser.userId},
 				#{bbsProd.prodNo},
-				#{bbsProd.prodName:VARCHAR},
 				#{contentName},
 				SYSDATE,
 				#{evalPoint},
@@ -35,7 +33,7 @@
 	
 	<select id="getBbsEval" parameterType="string" resultMap="bbsEvalSelectMap">
 		SELECT
-		content_no, bbsuser_id, bbsprodname, content_name, reg_date, eval_point, content
+		content_no, bbsuser_id, content_name, reg_date, eval_point, content
 		FROM bbsEval
 		WHERE content_no=#{contentNo}
 	</select>
@@ -52,7 +50,7 @@
 	<select id="getBbsEvalList" parameterType="search" resultMap="bbsEvalSelectMap">
 	  	SELECT *
 	  	FROM (	SELECT inner_table.* , ROWNUM AS row_seq
-	  					FROM		(	SELECT b.content_no, b.bbsuser_id, b.bbsprodname, b.content_name, b.reg_date, 
+	  					FROM		(	SELECT b.content_no, b.bbsuser_id, b.content_name, b.reg_date, 
 	  										b.eval_point, b.content, p.prod_no, p.prod_name
 											FROM bbsEval b, product p
 											<if test="searchCondition != null">
@@ -62,9 +60,6 @@
 										 				AND b.bbsuser_id LIKE '%${searchKeyword}%'
 													</if>
 													<if test="searchCondition == 1 and searchKeyword !='' ">
-										 				AND p.prod_name LIKE '%${searchKeyword}%'
-													</if>
-													<if test="searchCondition == 2 and searchKeyword !='' ">
 										 				AND b.content LIKE '${searchKeyword}%'
 													</if>
 												</where>
@@ -76,7 +71,7 @@
  
 	 <select id="getTotalCount" parameterType="search" resultType="int">
 		SELECT COUNT(*)
-	  	FROM (	SELECT content_no, bbsuser_id, content_name, reg_date, eval_point, content
+	  	FROM (	SELECT content_no, bbsuser_id, reg_date, eval_point, content
 											FROM bbsEval
 											<if test="searchCondition != null">
 												<where>

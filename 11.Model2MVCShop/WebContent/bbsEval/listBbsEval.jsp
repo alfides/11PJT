@@ -86,8 +86,7 @@
 					<div class="form-group">
 						<select class="form-control" name="searchCondition">
 							<option value="0" ${ !empty search.searchCondition && search.searchCondition==0 ? "selected" : "" }>작성자ID</option>
-							<option value="1" ${ !empty search.searchCondition && search.searchCondition==1 ? "selected" : "" }>상품명</option>
-							<option value="2" ${ !empty search.searchCondition && search.searchCondition==2 ? "selected" : "" }>내용</option>
+							<option value="1" ${ !empty search.searchCondition && search.searchCondition==1 ? "selected" : "" }>내용</option>
 						</select>
 					</div>
 					
@@ -109,7 +108,6 @@
 				<tr>
 					<th align="center">No</th>
 					<th align="left">작성자</th>
-					<th align="left">상품명</th>
 					<th align="left">제목</th>
 					<th align="left">등록일</th>
 					<th align="left">평점</th>
@@ -123,7 +121,6 @@
 					<tr>
 						<td align="center">${ bbsEval.contentNo }</td>
 						<td align="left">${ bbsEval.bbsUser.userId }</td>
-						<td align="left">${ bbsEval.bbsProd.prodName }</td>
 						<td align="left">${ bbsEval.contentName }</td>
 						<td align="left">${ bbsEval.regDate }</td>
 						<td align="left">${ bbsEval.evalPoint }</td>

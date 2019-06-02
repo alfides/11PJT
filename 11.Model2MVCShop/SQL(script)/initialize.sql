@@ -42,7 +42,6 @@ CREATE TABLE product (
 CREATE TABLE transaction ( 
 	tran_no NUMBER NOT NULL,
 	prod_no NUMBER(16) NOT NULL REFERENCES product(prod_no),
-	prod_name VARCHAR2(100)	REFERENCES product(prod_name),
 	buyer_id VARCHAR2(20) NOT NULL REFERENCES users(user_id),
 	payment_option CHAR(3),
 	receiver_name VARCHAR2(20),
@@ -56,18 +55,15 @@ CREATE TABLE transaction (
 );
 
 CREATE TABLE bbsEval(
-
 	content_no	NUMBER NOT NULL,
 	bbsuser_id	VARCHAR2(20) NOT NULL REFERENCES users(user_id),
 	bbsprod_no	NUMBER(16) NOT NULL REFERENCES product(prod_no),
-	bbsprod_name VARCHAR2(100) NOT NULL REFERENCES product(prod_name),
 	img_file VARCHAR2(200),
 	content_name VARCHAR2(100) NOT NULL,
 	reg_date DATE,
 	eval_point NUMBER(1) NOT NULL,
 	content VARCHAR2(2000) NOT NULL,
 	PRIMARY KEY(content_no)
- 
 );
 
 INSERT 

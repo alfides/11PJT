@@ -63,6 +63,7 @@
 					</div>
 					<div class="item">
 						<img src="/images/uploadFiles/BlueBlood1989.jpg" height="400px" alt="Second slide">
+						<p href="/product/getProduct?prodNo=10000" align="center">111</p>
 					</div>
 					<div class="item">
 						<img src="/images/uploadFiles/HextechGunBlade.jpg" height="400px" alt="Third slide">

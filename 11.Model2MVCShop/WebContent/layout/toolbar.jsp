@@ -83,18 +83,18 @@
 	                     </ul>
 	                 </li>
 	                 
-	                 <li class="dropdown">
-	                     <a  href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-	                         <span >게시판</span>
-	                         <span class="caret"></span>
-	                     </a>
-	                     <ul class="dropdown-menu">
-	                         <li><a href="#">상품평게시판</a></li>
-	                         <li><a href="#">QnA게시판</a></li>
-	                         <li class="divider"></li>
-	                         <li><a href="#">etc..</a></li>
-	                     </ul>
-	                 </li>
+<!-- 	                 <li class="dropdown"> -->
+<!-- 	                     <a  href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> -->
+<!-- 	                         <span >게시판</span> -->
+<!-- 	                         <span class="caret"></span> -->
+<!-- 	                     </a> -->
+<!-- 	                     <ul class="dropdown-menu"> -->
+<!-- 	                         <li><a href="#">상품평게시판</a></li> -->
+<!-- 	                         <li><a href="#">QnA게시판</a></li> -->
+<!-- 	                         <li class="divider"></li> -->
+<!-- 	                         <li><a href="#">etc..</a></li> -->
+<!-- 	                     </ul> -->
+<!-- 	                 </li> -->
 	                 
 	                 <li><a href="#">etc...</a></li>
 	             </ul>
@@ -158,12 +158,12 @@
 				}); 
 			 });
 		 
-		 $(function() {
-				//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
-			 	$("a:contains('상품평게시판')").on("click" , function() {
-			 		$(self.location).attr("href","/bbsEval/listBbsEval?menu=search");
-				}); 
-			 });
+// 		 $(function() {
+// 				//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
+// 			 	$("a:contains('상품평게시판')").on("click" , function() {
+// 			 		$(self.location).attr("href","/bbsEval/listBbsEval?menu=search");
+// 				}); 
+// 			 });
 		
 	 	$( "a:contains('개인정보조회')" ).on("click" , function() {
 	 		//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)

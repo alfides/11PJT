@@ -57,11 +57,11 @@
 					self.location="/user/getUser?userId="+$(this).parent().find('#buyerId').val();
 				})
 				
-				$('td:nth-child(8):contains("거래완료")').on('click', function(){
+				$('td:nth-child(10):contains("거래완료")').on('click', function(){
 					self.location="/purchase/updateTranCode2?tranNo="+$(this).parent().find('#tranNo').val()+"&tranCode=003";
 				});
 				
-				$('td:nth-child(8):contains("거래취소")').on('click', function(){
+				$('td:nth-child(10):contains("거래취소")').on('click', function(){
 					self.location="/purchase/removePurchase?tranNo="+$(this).parent().find('#tranNo').val();
 				});
 			});

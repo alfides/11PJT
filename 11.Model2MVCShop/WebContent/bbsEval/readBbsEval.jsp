@@ -93,13 +93,6 @@
 					<hr/>
 					
 					<div class="row">
-						<div class="col-xs-4 col-md-2"><strong>备 概 惑 前</strong></div>
-						<div class="col-xs-8 col-md-4">${ bbsEval.bbsProd.prodName }</div>
-					</div>
-					
-					<hr/>
-					
-					<div class="row">
 						<div class="col-xs-4 col-md-2"><strong>累 己 老</strong></div>
 						<div class="col-xs-8 col-md-4">${ bbsEval.regDate }</div>
 					</div>
