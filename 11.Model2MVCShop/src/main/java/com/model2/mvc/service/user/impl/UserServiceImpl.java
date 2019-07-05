@@ -26,6 +26,7 @@ public class UserServiceImpl implements UserService{
 		this.userDao = userDao;
 	}
 	
+	
 	///Constructor
 	public UserServiceImpl() {
 		System.out.println(this.getClass());
@@ -33,9 +34,11 @@ public class UserServiceImpl implements UserService{
 
 	///Method
 	public void addUser(User user) throws Exception {
+		
 		userDao.addUser(user);
+		
 	}
-
+	
 	public User getUser(String userId) throws Exception {
 		return userDao.getUser(userId);
 	}
@@ -55,11 +58,13 @@ public class UserServiceImpl implements UserService{
 		userDao.updateUser(user);
 	}
 
-	public boolean checkDuplication(String userId) throws Exception {
-		boolean result=true;
+	public int checkDuplication(String userId) throws Exception {
+		int result=0;
 		User user=userDao.getUser(userId);
+		System.out.println("hi//"+userId);
+		System.out.println("hi//"+user);
 		if(user != null) {
-			result=false;
+			result=1;
 		}
 		return result;
 	}

@@ -35,6 +35,7 @@ public class UserDaoImpl implements UserDao{
 	}
 
 	public User getUser(String userId) throws Exception {
+		System.out.println("hihi : "+userId);
 		return sqlSession.selectOne("UserMapper.getUser", userId);
 	}
 	
@@ -50,4 +51,5 @@ public class UserDaoImpl implements UserDao{
 	public int getTotalCount(Search search) throws Exception {
 		return sqlSession.selectOne("UserMapper.getTotalCount", search);
 	}
+	
 }

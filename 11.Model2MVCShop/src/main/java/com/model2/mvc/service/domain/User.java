@@ -15,6 +15,8 @@ public class User {
 	private String phone;
 	private String addr;
 	private String email;
+	private String authKey;
+	private int userState;
 	private Date regDate;
 	/////////////// EL 적용 위해 추가된 Field ///////////
 	private String phone1;
@@ -82,6 +84,22 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	public String getAuthKey() {
+		return authKey;
+	}
+
+	public void setAuthKey(String authKey) {
+		this.authKey = authKey;
+	}
+
+	public int getUserState() {
+		return userState;
+	}
+
+	public void setUserState(int userState) {
+		this.userState = userState;
+	}
+
 	public Date getRegDate() {
 		return regDate;
 	}

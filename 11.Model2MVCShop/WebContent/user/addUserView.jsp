@@ -32,7 +32,7 @@
 		//============= "가입"  Event 연결 =============
 		 $(function() {
 			//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
-			$( "button.btn.btn-primary" ).on("click" , function() {
+			$( "#submit" ).on("click" , function() {
 				fncAddUser();
 			});
 		});	
@@ -103,7 +103,9 @@
 			     }
 			});
 			 
-		});	
+		});
+		
+
 		
 		
 	   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -151,6 +153,33 @@
 											"scrollbars=no,scrolling=no,menubar=no,resizable=no");
 			});
 		});	
+			
+			$(function(){
+				
+				$("#userId").keyup(function(){
+					var id=$("#userId").val();
+					var checkId=JSON.stringify({id:id});
+					$.ajax({
+						type : "POST",
+						contentType : "application/json",
+						url : "/user/json/checkDuplication",
+						data : checkId,
+						datatype : "json" ,
+						success : function(response){
+							if($.trim(response.result)==0){
+								$('#helpBlock').html("사용가능");
+								$('#submit').attr('disabled', false);
+							}else{
+								$('#helpBlock').html("사용불가");
+								$('#submit').attr('disabled', true);
+							}
+						},
+						error : function(){alert("에러");}
+					})
+				});
+			});
+		
+		
 
 	</script>		
     
@@ -177,13 +206,9 @@
 		  <div class="form-group">
 		    <label for="userId" class="col-sm-offset-1 col-sm-3 control-label">아 이 디</label>
 		    <div class="col-sm-4">
-		      <input type="text" class="form-control" id="userId" name="userId" placeholder="중복확인하세요"  readonly>
+		      <input type="text" class="form-control" id="userId" name="userId" placeholder="중복확인하세요">
 		       <span id="helpBlock" class="help-block">
-		      	<strong class="text-danger">입력전 중복확인 부터..</strong>
 		      </span>
-		    </div>
-		    <div class="col-sm-3">
-		      <button type="button" class="btn btn-info">중복확인</button>
 		    </div>
 		  </div>
 		  
@@ -204,7 +229,7 @@
 		  <div class="form-group">
 		    <label for="userName" class="col-sm-offset-1 col-sm-3 control-label">이름</label>
 		    <div class="col-sm-4">
-		      <input type="password" class="form-control" id="userName" name="userName" placeholder="회원이름">
+		      <input type="text" class="form-control" id="userName" name="userName" placeholder="회원이름">
 		    </div>
 		  </div>
 		  
@@ -254,7 +279,7 @@
 		  
 		  <div class="form-group">
 		    <div class="col-sm-offset-4  col-sm-4 text-center">
-		      <button type="button" class="btn btn-primary"  >가 &nbsp;입</button>
+		      <button type="button" id="submit" name="submit" class="btn btn-primary">가 &nbsp;입</button>
 			  <a class="btn btn-primary btn" href="#" role="button">취&nbsp;소</a>
 		    </div>
 		  </div>
